@@ -1,0 +1,32 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Classes.Employee
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Update</h2>
+@using (Html.BeginForm("Update", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.EmployeeId)
+    <div class="mb-3">
+        @Html.Label("Departman")
+        @Html.DropDownListFor(x => x.DepartmentId, (List<SelectListItem>)ViewBag.department, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Personel Adı")
+        @Html.TextBoxFor(x => x.EmployeeName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.EmployeeName, "", new { @class = "text-danger mt-1 small" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Personel Soyadı")
+        @Html.TextBoxFor(x => x.EmployeeSurname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.EmployeeSurname, "", new { @class = "text-danger mt-1 small" })
+    </div>
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Personel Görseli</label>
+        <input class="form-control" type="file" id="formFile" name="EmployeeImage">
+    </div>
+    <button class="btn btn-info">Güncelle</button>
+}
+
+

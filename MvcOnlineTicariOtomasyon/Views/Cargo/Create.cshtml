@@ -1,0 +1,31 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Classes.CargoDetail
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Yeni Kargo Ekle</h2>
+@using (Html.BeginForm("Create", "Cargo", FormMethod.Post))
+{
+    <div class="mb-3">
+        @Html.Label("Takip Kodu")
+        <input type="text" value="@ViewBag.trackcode" name="TrackNumber" class="form-control" readonly />
+    </div>
+    <div class="mb-3">
+        @Html.Label("Personel")
+        @Html.TextBoxFor(x => x.Employee, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Alıcı")
+        @Html.TextBoxFor(x => x.Receiver, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Tarih")
+        @Html.TextBoxFor(x => x.CargoDate, new { @class = "form-control", type = "datetime-local" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Açıklama")
+        @Html.TextAreaFor(x => x.Description, 3, 1, new { @class = "form-control" })
+    </div>
+    <button class="btn btn-primary">Kaydet</button>
+}

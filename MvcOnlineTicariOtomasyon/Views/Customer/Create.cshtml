@@ -1,0 +1,27 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Classes.Customer
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("Create", "Customer", FormMethod.Post))
+{
+    <div class="mb-3">
+        @Html.Label("Müşteri Adı")
+        @Html.TextBoxFor(x => x.CustomerName, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Müşteri Soyadı")
+        @Html.TextBoxFor(x => x.CustomerSurname, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Müşteri Mail Adresi")
+        @Html.TextBoxFor(x => x.CustomerEmail, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Şehir")
+        @Html.TextBoxFor(x => x.CustomerCity, new { @class = "form-control" })
+    </div>
+    <button class="btn btn-info">Ekle</button>
+}

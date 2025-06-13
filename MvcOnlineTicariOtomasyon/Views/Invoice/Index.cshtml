@@ -1,0 +1,68 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Classes
+@model List<Invoice>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered mt-3">
+    <tr>
+        <th>Seri No</th>
+        <th>Sıra No</th>
+        <th>Vergi Dairesi</th>
+        <th>Tarih</th>
+        <th>Teslim Eden</th>
+        <th>Teslim Alan</th>
+        <th>Toplam</th>
+        <th>Detaylar</th>
+        <th>Güncelle</th>
+        <th>Yeni Kalem</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.InvoiceSerialNumber</td>
+            <td>@item.InvoiceSequenceNumber</td>
+            <td>@item.TaxOffice</td>
+            <td>@item.InvoiceDate.ToString("yyyy-MM-dd hh:mm tt")</td>
+            <td>@item.Deliverer</td>
+            <td>@item.Receiver</td>
+            <td>@item.TotalAmount₺</td>
+            <td><a href="/Invoice/Details/@item.InvoiceId" class="btn btn-secondary">Detaylar</a></td>
+            <td><a href="/Invoice/Update/@item.InvoiceId" class="btn btn-warning">Güncelle</a></td>
+            <td><a href="/Invoice/Details/@item.InvoiceId" class="btn btn-success">Kalem</a></td>
+        </tr>
+    }
+</table>
+<a href="/Invoice/Create/" class="btn btn-primary">Yeni Fatura Girişi</a>
+<br />
+<br />
+<button type="button" class="btn btn-info" data-toggle="modal" data-target="#Modal1">Popup Penceresi</button>
+
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Popup Dialog Ekranı</h2>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <tr>
+                        <td>Seri No</td>
+                        <td>Sıra No</td>
+                        <td>Tutar</td>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.InvoiceSerialNumber</td>
+                            <td>@item.InvoiceSequenceNumber</td>
+                            <td>@item.TotalAmount</td>
+                        </tr>
+                    }
+                </table>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Geri</button>
+            </div>
+        </div>
+    </div>
+</div>

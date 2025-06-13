@@ -1,0 +1,64 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Classes
+@model List<SaleTransaction>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+<table id="table1" class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ürün</th>
+            <th>Fiyat</th>
+            <th>Adet</th>
+            <th>Toplam Tutar</th>
+            <th>Personel</th>
+            <th>Müşteri</th>
+            <th>Tarih</th>
+            <th>Güncelle</th>
+            <th>Detaylar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TransactionId</td>
+                <td>@item.Product.ProductName</td>
+                <td>@item.UnitPrice₺</td>
+                <td>@item.Quantity</td>
+                <td>@item.TotalPrice₺</td>
+                <td>@item.Employee.EmployeeName @item.Employee.EmployeeSurname</td>
+                <td>@item.Customer.CustomerName @item.Customer.CustomerSurname</td>
+                <td>@item.Date.ToString("yyyy-MM-dd hh:mm tt")</td>
+                <td><a href="/Sale/Update/@item.TransactionId" class="btn btn-warning">Güncelle</a></td>
+                <td><a href="/Sale/Details/@item.TransactionId" class="btn btn-dark">Detaylar</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Sale/Create/" class="btn btn-primary">Yeni Satış Yap</a>
+
+@*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<link href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css" rel="stylesheet" />
+<script href="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+@*<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js"></script>*@
+
+<script>
+    $('#table1').dataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.12/i18n/Turkish.json"
+        }
+    });
+</script>
+

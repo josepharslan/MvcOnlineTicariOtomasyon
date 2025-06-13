@@ -1,0 +1,36 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Classes
+@model List<SaleTransaction>
+@{
+    ViewBag.Title = "CustomerPurchases";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Müşteri Adı: @ViewBag.customer</li>
+</ol>
+<table class="table table-bordered">
+    <tr>
+        <th>Satış Id</th>
+        <th>Ürün</th>
+        <th>Personel</th>
+        <th>Fiyat</th>
+        <th>Adet</th>
+        <th>Toplam Tutar</th>
+        <th>Tarih</th>
+        <th>Yazdır</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.TransactionId</td>
+            <td>@item.Product.ProductName</td>
+            <td>@item.Employee.EmployeeName @item.Employee.EmployeeSurname</td>
+            <td>@item.UnitPrice₺</td>
+            <td>@item.Quantity</td>
+            <td>@item.TotalPrice₺</td>
+            <td>@item.Date</td>
+            <td><a href="#" class="btn btn-info">Yazdır</a></td>
+        </tr>
+    }
+</table>

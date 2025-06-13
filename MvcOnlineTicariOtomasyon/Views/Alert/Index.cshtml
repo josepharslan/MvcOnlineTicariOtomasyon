@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="~/Scripts/jquery-3.7.0.js"></script>
+<div class="mt-3">
+    <button class="btn btn-primary" id="Btn1">Button 1</button>
+    <button class="btn btn-secondary" id="Btn2">Button 2</button>
+    <button class="btn btn-danger" id="Btn3">Button 3</button>
+    <button class="btn btn-warning" id="Btn4">Button 4</button>
+    <button class="btn btn-dark" id="Btn5">Button 5</button>
+</div>
+
+<script>
+    $('#Btn1').click(function () {
+        Swal.fire({
+            title: 'Hata!',
+            text: 'Tekrar Deneyiniz.',
+            icon: 'error',
+            confirmButtonText: 'Tamam',
+        })
+    });
+    $('#Btn2').click(function () {
+        Swal.fire({
+            title: 'Başarılı!',
+            text: 'İşleminiz başarılı.',
+            icon: 'success',
+            confirmButtonText: 'Tamam',
+        })
+    });
+    $('#Btn3').click(function () {
+        Swal.fire({
+            title: 'Çıkış Yapıyorsunuz!',
+            text: 'Emin misiniz?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Evet',
+            cancelButtonText: 'Hayır',
+            reverseButtons: true,
+            dangerMode: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'Çıkış yapıldı.',
+                    icon: 'success'
+                });
+            } else {
+                Swal.fire({
+                    title: 'Oturum devam ediyor.',
+                    icon: 'info'
+                });
+            }
+        });
+    });
+
+
+</script>

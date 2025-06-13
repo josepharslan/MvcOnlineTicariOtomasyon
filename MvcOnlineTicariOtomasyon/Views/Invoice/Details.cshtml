@@ -1,0 +1,29 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Classes
+@model List<InvoiceDetail>
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Fatura Kalemleri Sayfası</h2>
+<table class="table table-bordered mt-3">
+    <tr>
+        <th>ID</th>
+        <th>Açıklama</th>
+        <th>Birim Fiyat</th>
+        <th>Adet</th>
+        <th>Toplam</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.InvoiceDetailId</td>
+            <td>@item.Description</td>
+            <td>@item.UnitPrice</td>
+            <td>@item.Quantity</td>
+            <td>@item.LineTotal</td>
+
+        </tr>
+    }
+</table>
+<a href="/Invoice/CreateDetail/" class="btn btn-primary">Yeni Fatura Girişi</a>
