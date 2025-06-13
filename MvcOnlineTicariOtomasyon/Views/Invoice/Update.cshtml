@@ -1,0 +1,40 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Classes.Invoice
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Fatura Güncelleme Sayfası</h2>
+@using (Html.BeginForm("Update", "Invoice", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.InvoiceId)
+    @Html.HiddenFor(x => x.TotalAmount)
+    <div class="mb-3">
+        @Html.Label("Fatura Seri No")
+        @Html.TextBoxFor(x => x.InvoiceSerialNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.InvoiceSerialNumber)
+    </div>
+    <div class="mb-3">
+        @Html.Label("Fatura Sıra No")
+        @Html.TextBoxFor(x => x.InvoiceSequenceNumber, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Vergi Dairesi")
+        @Html.TextBoxFor(x => x.TaxOffice, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Teslim Eden")
+        @Html.TextBoxFor(x => x.Deliverer, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Teslim Alan")
+        @Html.TextBoxFor(x => x.Receiver, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Tarih")
+        @Html.TextBoxFor(x => x.InvoiceDate, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local" })
+    </div>
+    <button class="btn btn-primary">Güncelle</button>
+}
+
+

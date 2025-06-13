@@ -1,0 +1,70 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Classes.SaleTransaction
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+@using (Html.BeginForm("Update", "Sale", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.TransactionId)
+    <div class="mb-3">
+        @Html.Label("Personel")
+        @Html.DropDownListFor(x => x.EmployeeId, (List<SelectListItem>)ViewBag.employees, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Müşteri")
+        @Html.DropDownListFor(x => x.CustomerId, (List<SelectListItem>)ViewBag.customers, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Ürün Adı")
+        @Html.DropDownListFor(x => x.ProductId, (List<SelectListItem>)ViewBag.product, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Birim Fiyat")
+        @Html.TextBoxFor(x => x.UnitPrice, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Adet")
+        @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Toplam Fiyat")
+        @Html.TextBoxFor(x => x.TotalPrice, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Date, "Tarih", new { @class = "form-label" })
+        @Html.TextBoxFor(m => m.Date, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control", type = "datetime-local" })
+        @Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
+    </div>
+
+    <button class="btn btn-primary">Satış Güncelle</button>
+}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const unitPriceInput = document.querySelector('input[name="UnitPrice"]');
+        const quantityInput = document.querySelector('input[name="Quantity"]');
+        const totalPriceInput = document.querySelector('input[name="TotalPrice"]');
+
+        [unitPriceInput, quantityInput].forEach(el => {
+            el.addEventListener('input', updateTotal);
+        });
+
+        function updateTotal() {
+            const rawPrice = unitPriceInput.value.replace(/,/g, '.');
+            const rawQty = quantityInput.value.replace(/,/g, '.');
+
+            const price = parseFloat(rawPrice) || 0;
+            const qty = parseFloat(rawQty) || 1;
+            const total = price * qty;
+
+            const formatted = total
+                .toFixed(2)
+                .replace('.', ',');
+
+            totalPriceInput.value = formatted;
+        }
+    });
+</script>
+
+

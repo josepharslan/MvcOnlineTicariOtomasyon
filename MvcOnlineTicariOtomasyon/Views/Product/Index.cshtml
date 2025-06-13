@@ -1,0 +1,44 @@
+﻿@using MvcOnlineTicariOtomasyon.Models.Classes
+@model List<Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+@using (Html.BeginForm("Index", "Product", FormMethod.Get))
+
+{
+    <div class="row-cols-lg-auto">
+        Ürün Adı:
+        @Html.TextBox("p")
+        <input type="submit" value="Ara" class="btn btn-outline-primary" />
+    </div>
+}
+<table class="table table-bordered mt-3">
+    <tr>
+        <th>ÜRÜN</th>
+        <th>MARKA</th>
+        <th>STOK</th>
+        <th>ALIŞ FİYAT</th>
+        <th>SATIŞ FİYAT</th>
+        <th>KATEGORİ</th>
+        <th>SATIŞ YAP</th>
+        <th>GÜNCELLE</th>
+        <th>SİL</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ProductName</td>
+            <td>@item.Brand</td>
+            <td>@item.Stock</td>
+            <td>@item.BuyingPrice₺</td>
+            <td>@item.SellingPrice₺</td>
+            <td>@item.Category.CategoryName</td>
+            <td><a href="/Product/AddSale/@item.ProductId" class="btn btn-info">Satış Yap</a></td>
+            <td><a href="/Product/Update/@item.ProductId" class="btn btn-warning">Güncelle</a></td>
+            <td><a href="/Product/Delete/@item.ProductId" class="btn btn-danger">Sil</a></td>
+        </tr>
+    }
+</table>
+<a href="/Product/Create/" class="btn btn-primary">Yeni Ürün</a>

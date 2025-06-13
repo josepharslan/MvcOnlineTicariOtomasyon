@@ -1,0 +1,48 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Classes.Customer
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_CustomerPanelLayout.cshtml";
+}
+
+<h2>Mvc Online Ticari Otomasyon Cari Bilgi Paneli</h2>
+
+@using (Html.BeginForm(""))
+
+{
+    <table class="table table-hover">
+        <tr>
+            <td>
+                <label>Mail Adresi: @HttpContext.Current.User.Identity.Name</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextBoxFor(x => x.CustomerName, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextBoxFor(x => x.CustomerSurname, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextBoxFor(x => x.CustomerCity, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tfoot>
+            <tr>
+                <td>
+                    <button class="btn btn-primary">Bilgilerimi Güncelle</button>
+
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+}

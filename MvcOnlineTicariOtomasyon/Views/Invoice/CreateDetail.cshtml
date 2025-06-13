@@ -1,0 +1,32 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Classes.InvoiceDetail
+@{
+    ViewBag.Title = "CreateDetail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Fatura Kalemi Ekle</h2>
+@using (Html.BeginForm("CreateDetail", "Invoice", FormMethod.Post))
+{
+    <div class="mb-3">
+        @Html.Label("Açıklama")
+        @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Birim Fiyat")
+        @Html.TextBoxFor(x => x.UnitPrice, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Adet")
+        @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Toplam")
+        @Html.TextBoxFor(x => x.LineTotal, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Toplam")
+        @Html.TextBoxFor(x => x.InvoiceId, new { @class = "form-control" })
+    </div>
+    <button class="btn btn-info">Ekle</button>
+}
+

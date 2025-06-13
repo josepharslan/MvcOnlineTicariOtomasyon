@@ -1,0 +1,48 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Classes.Product
+
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h2>Yeni Ürün Sayfası</h2>
+@using (Html.BeginForm("Update", "Product", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.ProductId)
+    <div class="mb-3">
+        @Html.Label("Ürün Adı")
+        @Html.TextBoxFor(x => x.ProductName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.ProductName)
+    </div>
+    <div class="mb-3">
+        @Html.Label("Marka")
+        @Html.TextBoxFor(x => x.Brand, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Stok")
+        @Html.TextBoxFor(x => x.Stock, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Alış Fiyat")
+        @Html.TextBoxFor(x => x.BuyingPrice, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Satış Fiyat")
+        @Html.TextBoxFor(x => x.SellingPrice, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Kategori")
+        @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.category, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Ürün Görsel")
+        @Html.TextBoxFor(x => x.ProductImage, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Durum")
+        @Html.EditorFor(x => x.Status, new { htmlAttributes = new { @class = "form-control", placeholder = "Durum giriniz" } })
+    </div>
+    <button class="btn btn-primary">Kaydet</button>
+}
+

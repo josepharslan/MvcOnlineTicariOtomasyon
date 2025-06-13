@@ -1,0 +1,34 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Classes.Customer
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Cari Güncelleme Ekranı</h2>
+
+
+@using (Html.BeginForm("Update", "Customer", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.CustomerId)
+    <div class="mb-3">
+        @Html.Label("Müşteri Adı")
+        @Html.TextBoxFor(x => x.CustomerName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CustomerName, "", new { @class = "text-danger mt-1 small" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Müşteri Soyadı")
+        @Html.TextBoxFor(x => x.CustomerSurname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CustomerSurname, "", new { @class = "text-danger mt-1 small" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Müşteri Mail Adresi")
+        @Html.TextBoxFor(x => x.CustomerEmail, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CustomerEmail, "", new { @class = "text-danger mt-1 small" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Şehir")
+        @Html.TextBoxFor(x => x.CustomerCity, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.CustomerCity, "", new { @class = "text-danger mt-1 small" })
+    </div>
+    <button class="btn btn-info">Güncelle</button>
+}

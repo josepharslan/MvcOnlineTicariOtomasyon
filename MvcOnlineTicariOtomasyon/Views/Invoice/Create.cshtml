@@ -1,0 +1,36 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Classes.Invoice
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Invoice", FormMethod.Post))
+{
+    <div class="mb-3">
+        @Html.Label("Fatura Seri No")
+        @Html.TextBoxFor(x => x.InvoiceSerialNumber, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Fatura Sıra No")
+        @Html.TextBoxFor(x => x.InvoiceSequenceNumber, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Vergi Dairesi")
+        @Html.TextBoxFor(x => x.TaxOffice, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Teslim Eden")
+        @Html.TextBoxFor(x => x.Deliverer, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Teslim Alan")
+        @Html.TextBoxFor(x => x.Receiver, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        @Html.Label("Tarih")
+        @Html.TextBoxFor(x => x.InvoiceDate, new { @class = "form-control", type = "datetime-local" })
+    </div>
+    <button class="btn btn-info">Ekle</button>
+}
