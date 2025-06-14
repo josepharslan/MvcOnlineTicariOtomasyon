@@ -1,0 +1,46 @@
+﻿@model MvcOnlineTicariOtomasyon.Models.Classes.Class3
+
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<br />
+<div>
+    <h2>Kategoriler - Ürünler</h2>
+</div>
+<br />
+<div>
+    @Html.Label("Kategoriler")
+    @Html.DropDownList("DrpCategory", Model.Category, "Kategori Seçiniz", new { @class = "form-control" })
+    <br />
+    @Html.Label("Ürünler")
+    @Html.DropDownList("DrpProduct", Model.Product, "Ürün Seçiniz", new { @class = "form-control" })
+</div>
+
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+
+<script>
+    $(function () {
+        $('#DrpCategory').change(function () {
+            var id = $('#DrpCategory').val();
+            $.ajax({
+                url: '/Category/GetProductByCategory',
+                data: { p: id },
+                type: "POST",
+                dataType: "Json",
+                success: function (data) {
+                    console.log(data);
+                    $('#DrpProduct').empty();
+                    for (var i = 0; i < data.length; i++) {
+                        $('#DrpProduct').append("<option value='" + data[i].Value + "'>" + data[i].Text + "</Option>");
+                    }
+                }
+            });
+        });
+    });
+</script>
+
+
+

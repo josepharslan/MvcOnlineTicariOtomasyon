@@ -54,10 +54,13 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
                             Ürünler
                         </a>
-                        <a class="nav-link" href="/Department/Index">
-                            <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
-                            Departmanlar
-                        </a>
+                        @if (User.IsInRole("A"))
+                        {
+                            <a class="nav-link" href="/Department/Index">
+                                <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
+                                Departmanlar
+                            </a>
+                        }
                         <a class="nav-link" href="/Customer/Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             Müşteriler
@@ -103,6 +106,14 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-receipt"></i></div>
                             Faturalar
                         </a>
+                        <a class="nav-link" href="/Invoice/Dynamic">
+                            <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                            Dinamik Faturalar
+                        </a>
+                        <a class="nav-link" href="/Employee/EmployeeList">
+                            <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                            Personel Tablosu
+                        </a>
                         <a class="nav-link" href="/Sale/Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-dollar-sign"></i></div>
                             Satışlar
@@ -135,10 +146,13 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-box-open"></i></div>
                             Ürün Detay
                         </a>
-                        <a class="nav-link" href="/Statistic/SimpleTables">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
-                            Hızlı Bakış
-                        </a>
+                        @if (User.IsInRole("A"))
+                        {
+                            <a class="nav-link" href="/Statistic/SimpleTables">
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+                                Hızlı Bakış
+                            </a>
+                        }
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">

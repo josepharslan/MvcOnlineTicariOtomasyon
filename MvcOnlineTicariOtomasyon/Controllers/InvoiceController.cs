@@ -63,5 +63,36 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             c.SaveChanges();
             return RedirectToAction("/Details/" + invoiceDetail.InvoiceId);
         }
+        public ActionResult Dynamic()
+        {
+            Class4 c4 = new Class4();
+            c4.Invoices = c.Invoices.ToList();
+            c4.InvoicesDetails = c.InvoiceDetails.ToList();
+            return View(c4);
+        }
+        public ActionResult AddInvoice(string sequencen, string serialn, DateTime date, string taxoffice, string receiver, string deliverer, string total, InvoiceDetail[] invoiceDetails)
+        {
+            Invoice invoice = new Invoice();
+            invoice.InvoiceSequenceNumber = sequencen;
+            invoice.InvoiceSerialNumber = serialn;
+            invoice.InvoiceDate = date;
+            invoice.TaxOffice = taxoffice;
+            invoice.Receiver = receiver;
+            invoice.Deliverer = deliverer;
+            invoice.TotalAmount = decimal.Parse(total);
+            c.Invoices.Add(invoice);
+            foreach (var item in invoiceDetails)
+            {
+                InvoiceDetail ind = new InvoiceDetail();
+                ind.Description = item.Description;
+                ind.Quantity = item.Quantity;
+                ind.InvoiceId = item.InvoiceId;
+                ind.UnitPrice = item.UnitPrice;
+                ind.LineTotal = item.LineTotal;
+                c.InvoiceDetails.Add(ind);
+            }
+            c.SaveChanges();
+            return Json("İşlem Başarılı", JsonRequestBehavior.AllowGet);
+        }
     }
 }

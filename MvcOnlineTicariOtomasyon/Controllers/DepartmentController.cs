@@ -15,6 +15,7 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             var values = c.Departments.Where(x => x.Status == true).ToList();
             return View(values);
         }
+        [Authorize(Roles = "A")]
         [HttpGet]
         public ActionResult Create()
         {

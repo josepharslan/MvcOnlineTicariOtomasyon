@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using PagedList.Mvc;
+using System.Web.WebSockets;
 namespace MvcOnlineTicariOtomasyon.Controllers
 {
     public class CategoryController : Controller
@@ -53,6 +54,26 @@ namespace MvcOnlineTicariOtomasyon.Controllers
             c.Categories.Remove(value);
             c.SaveChanges();
             return RedirectToAction("Index");
+        }
+        public ActionResult Test()
+        {
+            Class3 c3 = new Class3();
+            c3.Category = new SelectList(c.Categories, "CategoryId", "CategoryName");
+            c3.Product = new SelectList(c.Products, "ProductId", "ProductName");
+            return View(c3);
+        }
+        public JsonResult GetProductByCategory(int p)
+        {
+            var product = (from x in c.Products
+                           join y in c.Categories
+                           on x.Category.CategoryId equals y.CategoryId
+                           where x.Category.CategoryId == p
+                           select new
+                           {
+                               Text = x.ProductName,
+                               Value = x.ProductId.ToString()
+                           }).ToList();
+            return Json(product);
         }
     }
 }
